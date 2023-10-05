@@ -1,4 +1,10 @@
 package AnimalClasses;
 
-public class Cats {
+import java.util.Date;
+
+public class Cats extends Pets{
+    public Cats(String name, Date birthDate) {
+        super(name, birthDate);
+        addCommand("meow");
+    }
 }

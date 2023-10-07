@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class ParentСlass {
     private static String animalClass;
-    private List<String> commands = new ArrayList<String>();
+    private List<String> commands = new ArrayList<>();
     private String name;
     private Date birthDate;
 

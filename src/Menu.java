@@ -35,10 +35,10 @@ public class Menu {
     }
 
     public void animalCreationMenu() { // разделить меньшие функции и разобраться с выводом дат
-        Scanner scanner = new Scanner(System.in);
         int menuNumber;
         String name;
         String dateString;
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Введите номер животное которое хотите добавить: 1.Кошка. 2.Собака. 3.Хомяк. 4.Лошадь. 5.Верблюд. 6.Осел. 0.Выход");
         menuNumber = scanner.nextInt();
         if (menuNumber == 0) {
@@ -48,6 +48,7 @@ public class Menu {
         name = scanner.next();
         System.out.println("Введите дату рождения в формате дд.мм.гггг .");
         dateString = scanner.next();
+
 
         ParentСlass animal = null;
         SimpleDateFormat format = new SimpleDateFormat();
@@ -80,9 +81,11 @@ public class Menu {
             System.out.println(i++ + ". " + animal);
         }
 
-        System.out.println("1. Посмотреть команды животного. 2. Добавить команды животному. 0. Выход.");
+
         int menuNumber = 1;
-        while ((menuNumber = scanner.nextInt()) != 0) {
+        while (menuNumber != 0) {
+            System.out.println("1. Посмотреть команды животного. 2. Добавить команды животному. 0. Выход.");
+            menuNumber = scanner.nextInt();
             if (menuNumber == 1) menuShowCommandAnimal();
             else if (menuNumber == 2) menuAddCommandAnimal();
             else if (menuNumber == 0) return;
@@ -90,22 +93,41 @@ public class Menu {
                 System.out.println("Вы ввели несуществующий номер.");
                 menuOfCreatedAnimals();
             }
+
         }
 
 
     }
 
     public void menuShowCommandAnimal() {
+        int numberAnimal;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите номер животного.");
-        int numberAnimal = scanner.nextInt();
-        System.out.println(petRegistry.getAnimal(numberAnimal).getCommandsList());
+        numberAnimal = scanner.nextInt();
+
+        try {
+            System.out.println(petRegistry.getAnimal(numberAnimal).getCommandsList());
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Вы ввели номер не существующего животного.");
+        }
 
     }
 
     public void menuAddCommandAnimal() {
-        System.out.println("dddaaa");
+        int numberAnimal;
+        String newCommandName;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите номер животного которому хотите добавить команду.");
+        numberAnimal = scanner.nextInt();
+        System.out.println("Введите команду для добавления.");
+        newCommandName = scanner.next();
+
+        try {
+            petRegistry.getAnimal(numberAnimal).addCommand(newCommandName);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Вы ввели номер не существующего животного.");
+        }
+
+
     }
-
-
 }

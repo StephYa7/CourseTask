@@ -1,13 +1,10 @@
-import AnimalClasses.Horses;
+import PetRegistry.PetRegistry;
 
-import java.util.Date;
+import java.text.ParseException;
 
 public class Main {
-    public static void main(String[] args) {
-        Horses hors = new Horses("h1",new Date());
-        System.out.println(hors.getCommandsList());
-        hors.addCommand("sd");
-        System.out.println(hors.getCommandsList());
-
+    public static void main(String[] args) throws ParseException {
+        Menu menu = new Menu();
+        menu.mainMenu();
     }
 }

@@ -1,5 +1,4 @@
 import AnimalClasses.*;
-import PetRegistry.PetRegistry;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,12 +9,12 @@ public class Menu {
     public PetRegistry petRegistry = new PetRegistry();
 
     public void mainMenu() {
-        petRegistry.addAnimal(new Cats("кот", new Date(566266)));
-        petRegistry.addAnimal(new Dogs("собака", new Date(5666336)));
-        petRegistry.addAnimal(new Donkeys("осел", new Date(56666)));
-        petRegistry.addAnimal(new Horses("конь", new Date(5663266)));
-        petRegistry.addAnimal(new Hamsters("хомяк", new Date(5663366)));
-        petRegistry.addAnimal(new Camels("верблюд", new Date(56344666)));
+        petRegistry.addAnimal(1,null, new Date(566266));
+        petRegistry.addAnimal(2,"собака", new Date(5666336));
+        petRegistry.addAnimal(3,"осел", new Date(56666));
+        petRegistry.addAnimal(4,"конь", new Date(5663266));
+        petRegistry.addAnimal(5,"хомяк", new Date(5663366));
+        petRegistry.addAnimal(6,"верблюд", new Date(56344666));
         Scanner scanner = new Scanner(System.in);
         int menuNumber = 1;
         while (menuNumber != 0) {
@@ -34,7 +33,7 @@ public class Menu {
         }
     }
 
-    public void animalCreationMenu() { // разделить меньшие функции и разобраться с выводом дат
+    public void animalCreationMenu() { // разделить на функции и разобраться с выводом дат
         int menuNumber;
         String name;
         String dateString;
@@ -61,16 +60,7 @@ public class Menu {
             return;
         }
 
-        switch (menuNumber) {
-            case 1 -> animal = new Cats(name, date);
-            case 2 -> animal = new Dogs(name, date);
-            case 3 -> animal = new Hamsters(name, date);
-            case 4 -> animal = new Horses(name, date);
-            case 5 -> animal = new Camels(name, date);
-            case 6 -> animal = new Donkeys(name, date);
-            default -> System.out.println("Вы ввели не существующий вариант");
-        }
-        petRegistry.addAnimal(animal);
+        petRegistry.addAnimal(menuNumber,name,date);
 
     }
 
